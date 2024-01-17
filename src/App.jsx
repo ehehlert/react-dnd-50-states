@@ -7,7 +7,7 @@ import Dustbin from "./components/Dustbin";
 function App() {
   return (
     <DndProvider backend={HTML5Backend}>
-      <div style={{ display: "flex" }}>
+      <div className="flex">
         <Box />
         <Dustbin />
       </div>

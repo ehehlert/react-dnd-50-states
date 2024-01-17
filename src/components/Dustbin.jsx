@@ -17,20 +17,9 @@ export default function Dustbin() {
   return (
     <div
       ref={drop}
-      style={{
-        border: "1px dashed gray",
-        backgroundColor: "lightgray",
-        padding: "1rem",
-        marginRight: "0.5rem",
-        marginBottom: "0.5rem",
-        width: "150px",
-        height: "150px",
-        textAlign: "center",
-        alignItems: "center",
-        display: "flex",
-        justifyContent: "center",
-        color: isOver ? "yellow" : "red",
-      }}
+      className={`border border-dashed border-gray-400 ${
+        isOver ? "text-yellow-500" : "text-red-500"
+      } bg-gray-200 p-4 mr-2 mb-2 w-36 h-36 flex items-center justify-center`}
     >
       DROP HERE
     </div>
