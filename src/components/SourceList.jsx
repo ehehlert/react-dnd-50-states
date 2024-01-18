@@ -1,11 +1,16 @@
 import { Droppable, Draggable } from "react-beautiful-dnd";
+import { shuffle } from "./Utils";
 
 export default function SourceList({ capitalsList }) {
   return (
     <div>
       <Droppable droppableId="capitalsList" type="mapping">
         {(provided) => (
-          <div ref={provided.innerRef} {...provided.droppableProps}>
+          <div
+            className="flex-col"
+            ref={provided.innerRef}
+            {...provided.droppableProps}
+          >
             {capitalsList.map((item, index) => (
               <Draggable
                 key={item.id}
