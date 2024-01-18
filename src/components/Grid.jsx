@@ -4,6 +4,7 @@ import SourceList from "./SourceList";
 import { CAPITALS_DATA, STATE_DATA } from "./MockData";
 import DestinationList from "./DestinationList";
 import { shuffle } from "./Utils";
+import { downloadCSV } from "./Utils";
 
 const SHUFFLED_CAPITALS_DATA = shuffle(CAPITALS_DATA);
 const SHUFFLED_STATES_DATA = shuffle(STATE_DATA);
@@ -79,6 +80,12 @@ export default function Grid() {
 
   return (
     <div className="p-1">
+      <button
+        className="m-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        onClick={() => downloadCSV(statesBoxes)}
+      >
+        Download CSV
+      </button>
       <DragDropContext onDragEnd={handleDragDrop}>
         <div
           data-identifier="main-card"
