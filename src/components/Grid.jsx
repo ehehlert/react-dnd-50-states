@@ -3,10 +3,14 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import SourceList from "./SourceList";
 import { CAPITALS_DATA, STATE_DATA } from "./MockData";
 import DestinationList from "./DestinationList";
+import { shuffle } from "./Utils";
+
+const SHUFFLED_CAPITALS_DATA = shuffle(CAPITALS_DATA);
+const SHUFFLED_STATES_DATA = shuffle(STATE_DATA);
 
 export default function Grid() {
-  const [capitalsList, setCapitalsList] = useState(CAPITALS_DATA);
-  const [statesBoxes, setStateBoxes] = useState(STATE_DATA);
+  const [capitalsList, setCapitalsList] = useState(SHUFFLED_CAPITALS_DATA);
+  const [statesBoxes, setStateBoxes] = useState(SHUFFLED_STATES_DATA);
 
   const handleDragDrop = (results) => {
     const { source, destination, type } = results;
@@ -53,6 +57,7 @@ export default function Grid() {
         stateToBeUpdated.matched = true;
         stateToBeUpdated.matchedId = capitalBeingMatchedId;
         stateToBeUpdated.matchedName = capitalBeingMatchedName;
+        stateToBeUpdated.disabled = true;
 
         if (capitalBeingMatched.state === stateBeingMatched.state) {
           stateToBeUpdated.trueMatch = true;
@@ -61,6 +66,8 @@ export default function Grid() {
         }
 
         setStateBoxes(newStatesBoxes);
+
+        // log for demo purposes
         console.log(newStatesBoxes);
       }
     }
@@ -77,7 +84,7 @@ export default function Grid() {
           data-identifier="main-card"
           className="rounded-lg shadow-md flex gap-4 p-4 bg-white border border-black"
         >
-          <div className=" bg-blue-300 p-4 w-1/3">
+          <div className=" bg-blue-300 p-4 w-1/6">
             <h2>Capitals</h2>
             <SourceList capitalsList={capitalsList} />
           </div>

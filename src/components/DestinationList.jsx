@@ -1,10 +1,11 @@
 import { Droppable, Draggable } from "react-beautiful-dnd";
+import { shuffle } from "./Utils";
 
-function StateBox({ name, id, trueMatch }) {
+function StateBox({ name, id, trueMatch, disabled }) {
   return (
     <div>
       <h2>{name}</h2>
-      <Droppable droppableId={id} type="mapping">
+      <Droppable isDropDisabled={disabled} droppableId={id} type="mapping">
         {(provided) => (
           <div ref={provided.innerRef} {...provided.droppableProps}>
             <div
@@ -44,6 +45,7 @@ function renderStateBoxes(statesBoxes) {
       id={stateBox.id}
       name={stateBox.state}
       trueMatch={stateBox.trueMatch}
+      disabled={stateBox.disabled}
     />
   ));
 }
@@ -51,7 +53,7 @@ function renderStateBoxes(statesBoxes) {
 export default function DestinationList({ statesBoxes }) {
   return (
     <div>
-      <div className="grid md:grid-cols-3 grid-cols-1 gap-2 auto-rows-min">
+      <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-1 gap-2 auto-rows-min">
         {renderStateBoxes(statesBoxes)}
       </div>
     </div>
